@@ -8,14 +8,18 @@
     this.DIM_Y = 700;
     this.numAsteroids = numAsteroids;
     this.asteroids = this.addAsteroids(numAsteroids);
+    this.ship = new Asteroids.Ship(this, [800, 350]);
+  };
+
+  Game.prototype.allObjects = function () {
+    return this.asteroids.concat([this.ship]);
   };
 
   Game.prototype.addAsteroids = function (numAsteroids) {
     var asteroids = [];
-    var that = this;
     for ( var i = 0; i < numAsteroids; i++ ) {
-      var randPos = [Math.random() * that.DIM_X, Math.random() * that.DIM_Y];
-      var asteroid = new Asteroids.Asteroid(randPos, that);
+      var randPos = [Math.random() * this.DIM_X, Math.random() * this.DIM_Y];
+      var asteroid = new Asteroids.Asteroid(randPos, this);
       asteroids.push(asteroid);
     }
     return asteroids;
@@ -23,14 +27,16 @@
 
   Game.prototype.draw = function (ctx) {
     ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-    this.asteroids.forEach(function (asteroid) {
-      asteroid.draw(ctx);
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
+    this.allObjects().forEach(function (movingObject) {
+      movingObject.draw(ctx);
     });
   };
 
   Game.prototype.moveObjects = function () {
-    this.asteroids.forEach(function (asteroid) {
-      asteroid.move();
+    this.allObjects().forEach(function (movingObject) {
+      movingObject.move();
     });
   };
 
@@ -51,12 +57,14 @@
   };
 
   Game.prototype.checkCollisions = function () {
-    for ( var i = 0; i < this.asteroids.length; i++ ) {
-      for ( var j = 0; j < this.asteroids.length; j++ ) {
+    var movingObjects = this.allObjects();
+    for ( var i = 0; i < movingObjects.length; i++ ) {
+      for ( var j = 0; j < movingObjects.length; j++ ) {
         if (i === j) { continue; }
-        if ( this.asteroids[i].isCollidedWith(this.asteroids[j]) ) {
-          // alert("COLLISION");
-          this.asteroids[i].collideWith(this.asteroids[j]);
+        if ( movingObjects[i].isCollidedWith(movingObjects[j]) ) {
+          // if (movingObjects[i] instanceof Asteroids.Asteroid) {
+            movingObjects[i].collideWith(movingObjects[j]);
+          // }
         }
       }
     }

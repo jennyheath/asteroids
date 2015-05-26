@@ -19,4 +19,10 @@
     var y = Math.sqrt(length*length  - x*x);
     return [x, y];
   };
+
+  Asteroid.prototype.collideWith = function (otherObject) {
+    if (otherObject instanceof Asteroids.Ship) {
+      otherObject.relocate();
+    }
+  };
 })();
