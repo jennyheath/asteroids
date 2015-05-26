@@ -13,7 +13,7 @@
     setInterval(function () {
       gameObj.game.step();
       gameObj.game.draw(gameObj.ctx);
-    }, 200);
+    }, 20);
   };
 
 })();
