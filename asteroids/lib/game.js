@@ -55,7 +55,8 @@
       for ( var j = 0; j < this.asteroids.length; j++ ) {
         if (i === j) { continue; }
         if ( this.asteroids[i].isCollidedWith(this.asteroids[j]) ) {
-          alert("COLLISION");
+          // alert("COLLISION");
+          this.asteroids[i].collideWith(this.asteroids[j]);
         }
       }
     }
@@ -65,5 +66,10 @@
     this.moveObjects();
     this.checkCollisions();
   };
+
+  Game.prototype.remove = function (asteroid) {
+    var idx = this.asteroids.indexOf(asteroid);
+    this.asteroids.splice(idx);
+  }
 
 })();

@@ -33,4 +33,11 @@
     var dist = Math.sqrt(Math.pow(diffInX, 2) + Math.pow(diffInY, 2));
     return (dist <= sum ? true : false);
   };
+
+  MovingObject.prototype.collideWith = function (otherObject) {
+    // if ( this.isCollidedWith(otherObject) ) {
+      this.game.remove(otherObject);
+      this.game.remove(this);
+    // }
+  };
 })();
