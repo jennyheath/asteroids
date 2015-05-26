@@ -25,4 +25,12 @@
     this.pos[1] += this.vel[1];
     this.pos = this.game.wrap(this.pos);
   };
+
+  MovingObject.prototype.isCollidedWith = function (otherObject) {
+    var sum = this.radius + otherObject.radius;
+    var diffInX = this.pos[0] - otherObject.pos[0];
+    var diffInY = this.pos[1] - otherObject.pos[1];
+    var dist = Math.sqrt(Math.pow(diffInX, 2) + Math.pow(diffInY, 2));
+    return (dist <= sum ? true : false);
+  };
 })();
