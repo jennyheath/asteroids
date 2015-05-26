@@ -9,10 +9,11 @@
     this.numAsteroids = numAsteroids;
     this.asteroids = this.addAsteroids(numAsteroids);
     this.ship = new Asteroids.Ship(this, [800, 350]);
+    this.bullets = [];
   };
 
   Game.prototype.allObjects = function () {
-    return this.asteroids.concat([this.ship]);
+    return this.asteroids.concat([this.ship], this.bullets);
   };
 
   Game.prototype.addAsteroids = function (numAsteroids) {
