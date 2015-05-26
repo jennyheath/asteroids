@@ -11,9 +11,16 @@
   };
   Asteroids.Util.inherits(Ship, Asteroids.MovingObject);
 
+  Ship.prototype.fireBullet = function () {
+    // if (this.game.bullets.length < 5) {
+      var bullet = new Asteroids.Bullet(this.game, this.pos, this.vel);
+      this.game.bullets.push(bullet);
+    // }
+  };
+
   Ship.prototype.power = function (impulse) {
     this.vel[0] += impulse[0];
-    this.vel[1] += impulse[1];    
+    this.vel[1] += impulse[1];
   };
 
   Ship.prototype.relocate = function () {
