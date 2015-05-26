@@ -11,7 +11,7 @@
   GameView.prototype.start = function () {
     var gameObj = this;
     setInterval(function () {
-      gameObj.game.moveObjects();
+      gameObj.game.step();
       gameObj.game.draw(gameObj.ctx);
     }, 200);
   };

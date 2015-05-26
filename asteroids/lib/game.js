@@ -13,7 +13,7 @@
   Game.prototype.addAsteroids = function (numAsteroids) {
     var asteroids = [];
     var that = this;
-    for ( var i = 0; i <= numAsteroids; i++ ) {
+    for ( var i = 0; i < numAsteroids; i++ ) {
       var randPos = [Math.random() * that.DIM_X, Math.random() * that.DIM_Y];
       var asteroid = new Asteroids.Asteroid(randPos, that);
       asteroids.push(asteroid);
@@ -48,6 +48,22 @@
     };
 
     return [ _wrap(x, this.DIM_X), _wrap(y, this.DIM_Y) ];
+  };
+
+  Game.prototype.checkCollisions = function () {
+    for ( var i = 0; i < this.asteroids.length; i++ ) {
+      for ( var j = 0; j < this.asteroids.length; j++ ) {
+        if (i === j) { continue; }
+        if ( this.asteroids[i].isCollidedWith(this.asteroids[j]) ) {
+          alert("COLLISION");
+        }
+      }
+    }
+  };
+
+  Game.prototype.step = function () {
+    this.moveObjects();
+    this.checkCollisions();
   };
 
 })();
