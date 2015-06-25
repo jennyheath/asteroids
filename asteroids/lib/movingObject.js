@@ -4,12 +4,14 @@
   }
 
   var MovingObject = Asteroids.MovingObject = function (options) {
-    this.pos = options["pos"];
-    this.vel = options["vel"];
-    this.radius = options["radius"];
-    this.color = options["color"];
-    this.game = options["game"];
+    this.pos = options.pos;
+    this.vel = options.vel;
+    this.radius = options.radius;
+    this.color = options.color;
+    this.game = options.game;
   };
+
+  MovingObject.prototype.isWrappable = true;
 
   MovingObject.prototype.draw = function(ctx) {
     ctx.beginPath();
@@ -23,7 +25,13 @@
   MovingObject.prototype.move = function() {
     this.pos[0] += this.vel[0];
     this.pos[1] += this.vel[1];
-    this.pos = this.game.wrap(this.pos);
+    if (this.isWrappable) {
+      this.pos = this.game.wrap(this.pos);
+    } else {
+      if (this.game.outOfBounds(this)){
+        this.game.remove(this);
+      }
+    }
   };
 
   MovingObject.prototype.isCollidedWith = function (otherObject) {

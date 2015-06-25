@@ -30,10 +30,26 @@
   GameView.prototype.start = function () {
     var gameObj = this;
     gameObj.bindKeyHandlers();
+
     setInterval(function () {
+      if (gameObj.game.Lost) {
+        var playAgain = displayLose();
+        if (playAgain) {
+          location.reload();
+        } else {
+          gameObj.game.Lost = false;
+          gameObj.game.asteroids = [];
+          return;
+        }
+      }
       gameObj.game.step();
       gameObj.game.draw(gameObj.ctx);
     }, 20);
+
+    function displayLose () {
+      var answer = confirm("You lost :( Play again?");
+      return answer;
+    }
   };
 
 })();

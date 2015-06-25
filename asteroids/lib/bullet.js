@@ -9,4 +9,11 @@
     this.color = "#ffff00";
   };
   Asteroids.Util.inherits(Bullet, Asteroids.MovingObject);
+  Bullet.prototype.isWrappable = false;
+
+  Bullet.prototype.collideWith = function (obj) {
+    if (obj instanceof Asteroids.Asteroid) {
+      this.game.remove(obj);
+    }
+  };
 })();
