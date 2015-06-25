@@ -24,6 +24,9 @@
     if (otherObject instanceof Asteroids.Ship) {
       otherObject.relocate();
       this.game.lose();
+    } else if (otherObject instanceof Asteroids.Asteroid) {
+      otherObject.vel = [otherObject.vel[0] * -1, otherObject.vel[1] * -1];
+      this.vel = [this.vel[0] * -1, this.vel[1] * -1];
     }
   };
 })();

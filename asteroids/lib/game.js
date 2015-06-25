@@ -80,9 +80,7 @@
       for ( var j = 0; j < movingObjects.length; j++ ) {
         if (i === j) { continue; }
         if ( movingObjects[i].isCollidedWith(movingObjects[j]) ) {
-          // if (movingObjects[i] instanceof Asteroids.Asteroid) {
-            movingObjects[i].collideWith(movingObjects[j]);
-          // }
+          movingObjects[i].collideWith(movingObjects[j]);
         }
       }
     }

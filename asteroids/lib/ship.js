@@ -14,7 +14,7 @@
   Ship.prototype.fireBullet = function () {
     var bulletVel;
     if (this.vel[0] === 0 && this.vel[1] === 0) {
-      bulletVel = [3, 3];
+      bulletVel = [3, 0];
     } else {
       bulletVel = [this.vel[0]*3, this.vel[1]*3];
     }
