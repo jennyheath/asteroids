@@ -6,7 +6,12 @@
   var GameView = Asteroids.GameView = function (game, ctx) {
     this.game = game;
     this.ctx = ctx;
+    // window.addEventListener("keypress", this.spaceBar);
   };
+
+  // GameView.prototype.spaceBar = function (event) {
+  //   event.preventDefault();
+  // };
 
   GameView.prototype.bindKeyHandlers = function () {
     var gameView = this;
@@ -22,7 +27,7 @@
     key('right', function () {
       gameView.game.ship.power([1, 0]);
     });
-    key('a', function () {
+    key('x', function () {
       gameView.game.ship.fireBullet();
     });
   };
@@ -33,23 +38,11 @@
 
     setInterval(function () {
       if (gameObj.game.Lost) {
-        var playAgain = displayLose();
-        if (playAgain) {
-          location.reload();
-        } else {
-          gameObj.game.Lost = false;
-          gameObj.game.asteroids = [];
-          return;
-        }
+        alert("You lost :(");
+        location.reload();
       }
       gameObj.game.step();
       gameObj.game.draw(gameObj.ctx);
     }, 20);
-
-    function displayLose () {
-      var answer = confirm("You lost :( Play again?");
-      return answer;
-    }
   };
-
 })();

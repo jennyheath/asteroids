@@ -4,11 +4,11 @@
   }
 
   var Game = Asteroids.Game = function (numAsteroids) {
-    this.DIM_X = 1600;
-    this.DIM_Y = 700;
+    this.DIM_X = 1200;
+    this.DIM_Y = 600;
     this.numAsteroids = numAsteroids;
     this.asteroids = this.addAsteroids(numAsteroids);
-    this.ship = new Asteroids.Ship(this, [800, 350]);
+    this.ship = new Asteroids.Ship(this, [100, this.DIM_Y - 100]);
     this.bullets = [];
   };
   Game.prototype.Lost = false;
@@ -27,12 +27,23 @@
 
   Game.prototype.addAsteroids = function (numAsteroids) {
     var asteroids = [];
-    for ( var i = 0; i < numAsteroids; i++ ) {
+
+    _pickPos = function () {
       var dirs = [-1, 1];
       var dirX = dirs[Math.floor(Math.random()*2)];
       var dirY = dirs[Math.floor(Math.random()*2)];
       var randPos = [Math.random() * this.DIM_X * dirX,
                      Math.random() * this.DIM_Y * dirY];
+      return randPos;
+    }.bind(this);
+
+    for ( var i = 0; i < numAsteroids; i++ ) {
+      var randPos = _pickPos();
+      console.log(randPos);
+      while (randPos[0] < 400 && randPos[1] > this.DIM_Y - 400) {
+        randPos = _pickPos();
+        console.log(randPos);
+      }
       var asteroid = new Asteroids.Asteroid(randPos, this);
       asteroids.push(asteroid);
     }
@@ -98,6 +109,10 @@
   Game.prototype.step = function () {
     this.moveObjects();
     this.checkCollisions();
+    if (this.asteroids.length === 0) {
+      alert("You won! :)");
+      location.reload();
+    }
   };
 
   Game.prototype.remove = function (obj) {
