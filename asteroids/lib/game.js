@@ -7,8 +7,8 @@
     this.DIM_X = 1200;
     this.DIM_Y = 600;
     this.numAsteroids = numAsteroids;
-    this.asteroids = this.addAsteroids(numAsteroids);
     this.ship = new Asteroids.Ship(this, [600, 300]);
+    this.asteroids = this.addAsteroids(numAsteroids);
     this.bullets = [];
     this.shipAngle = 0;
   };
@@ -40,7 +40,8 @@
 
     for ( var i = 0; i < numAsteroids; i++ ) {
       var randPos = _pickPos();
-      while (randPos[0] < 400 && randPos[1] > this.DIM_Y - 400) {
+      while ((randPos[0] < this.ship.pos[0] + 200 && randPos[0] > this.ship.pos[0] - 200) ||
+              (randPos[1] < this.ship.pos[1] + 200 && randPos[1] > this.ship.pos[1] - 200)) {
         randPos = _pickPos();
       }
       var asteroid = new Asteroids.Asteroid(randPos, this);

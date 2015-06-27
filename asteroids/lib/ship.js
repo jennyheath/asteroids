@@ -48,7 +48,7 @@
   };
 
   Ship.prototype.power = function () {
-    this.vel = [Math.sin(this.dir)*5, Math.cos(this.dir)*5];
+    this.vel = [Math.sin(this.dir)*6, Math.cos(this.dir)*6];
 
     // if (this.vel[0] < 3 || (this.vel[0] >= 3 && impulse[0] < 0)) {
     //   this.vel[0] += impulse[0];

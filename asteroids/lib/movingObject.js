@@ -11,8 +11,6 @@
     this.game = options.game;
   };
 
-  MovingObject.prototype.isWrappable = true;
-
   MovingObject.prototype.draw = function(ctx) {
     ctx.beginPath();
     var x = this.pos[0];
@@ -25,10 +23,11 @@
   MovingObject.prototype.move = function() {
     this.pos[0] += this.vel[0];
     this.pos[1] += this.vel[1];
-    if (this.isWrappable) {
-      this.pos = this.game.wrap(this.pos);
-    } else {
-      if (this.game.outOfBounds(this)){
+    this.pos = this.game.wrap(this.pos);
+    if (this instanceof Asteroids.Bullet) {
+      this.distanceTraveled += Math.sqrt(Math.pow(this.vel[0], 2) +
+                               Math.pow(this.vel[1], 2));
+      if (this.distanceTraveled > 1200) {
         this.game.remove(this);
       }
     }

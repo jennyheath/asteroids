@@ -7,9 +7,9 @@
     Asteroids.MovingObject.call(this, {game: game, pos: pos, vel: vel});
     this.radius = 3;
     this.color = "#ffff00";
+    this.distanceTraveled = 0;
   };
   Asteroids.Util.inherits(Bullet, Asteroids.MovingObject);
-  Bullet.prototype.isWrappable = false;
 
   Bullet.prototype.collideWith = function (obj) {
     if (obj instanceof Asteroids.Asteroid) {
