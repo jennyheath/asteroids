@@ -15,17 +15,14 @@
 
   GameView.prototype.bindKeyHandlers = function () {
     var gameView = this;
-    key('up', function () {
-      gameView.game.ship.power([0, -1]);
-    });
-    key('down', function () {
-      gameView.game.ship.power([0, 1]);
-    });
     key('left', function () {
-      gameView.game.ship.power([-1, 0]);
+      gameView.game.ship.changeDir(-1);
     });
     key('right', function () {
-      gameView.game.ship.power([1, 0]);
+      gameView.game.ship.changeDir(1);
+    });
+    key('up', function () {
+      gameView.game.ship.power();
     });
     key('x', function () {
       gameView.game.ship.fireBullet();

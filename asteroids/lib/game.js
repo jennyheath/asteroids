@@ -10,6 +10,7 @@
     this.asteroids = this.addAsteroids(numAsteroids);
     this.ship = new Asteroids.Ship(this, [100, this.DIM_Y - 100]);
     this.bullets = [];
+    this.shipAngle = 0;
   };
   Game.prototype.Lost = false;
 
@@ -39,10 +40,8 @@
 
     for ( var i = 0; i < numAsteroids; i++ ) {
       var randPos = _pickPos();
-      console.log(randPos);
       while (randPos[0] < 400 && randPos[1] > this.DIM_Y - 400) {
         randPos = _pickPos();
-        console.log(randPos);
       }
       var asteroid = new Asteroids.Asteroid(randPos, this);
       asteroids.push(asteroid);
@@ -55,8 +54,15 @@
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
     this.allObjects().forEach(function (movingObject) {
+      // if (movingObject instanceof Asteroids.Ship) {
+      //   movingObject.draw(ctx, this.shipAngle);
+      // } else {
       movingObject.draw(ctx);
+      // }
     });
+    this.ship.vel[0] /= 1.015;
+    this.ship.vel[1] /= 1.015;
+    console.log(this.ship.vel);
   };
 
   Game.prototype.lose = function () {
