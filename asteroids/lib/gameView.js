@@ -16,10 +16,10 @@
   GameView.prototype.bindKeyHandlers = function () {
     var gameView = this;
     key('left', function () {
-      gameView.game.ship.changeDir(-1);
+      gameView.game.ship.changeDir(1);
     });
     key('right', function () {
-      gameView.game.ship.changeDir(1);
+      gameView.game.ship.changeDir(-1);
     });
     key('up', function () {
       gameView.game.ship.power();

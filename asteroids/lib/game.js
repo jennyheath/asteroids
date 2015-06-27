@@ -8,7 +8,7 @@
     this.DIM_Y = 600;
     this.numAsteroids = numAsteroids;
     this.asteroids = this.addAsteroids(numAsteroids);
-    this.ship = new Asteroids.Ship(this, [100, this.DIM_Y - 100]);
+    this.ship = new Asteroids.Ship(this, [600, 300]);
     this.bullets = [];
     this.shipAngle = 0;
   };
@@ -62,7 +62,6 @@
     });
     this.ship.vel[0] /= 1.015;
     this.ship.vel[1] /= 1.015;
-    console.log(this.ship.vel);
   };
 
   Game.prototype.lose = function () {
