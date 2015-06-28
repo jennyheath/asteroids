@@ -49,7 +49,7 @@
     // if (this.stopped) {
     //   return;
     // }
-    var increment = (Math.PI/180)*10;
+    var increment = (Math.PI/180)*15;
     if (dir > 0) {
       console.log("increment left");
       if (this.dir + increment > Math.PI*2) {
@@ -104,7 +104,7 @@
 
   Ship.prototype.power = function () {
     var frictionVec = [-0.5*this.vel[0], -0.5*this.vel[1]];
-    var thrustVec = [Math.sin(this.dir)*2, Math.cos(this.dir)*2];
+    var thrustVec = [Math.sin(this.dir), Math.cos(this.dir)];
     var forceVec = [frictionVec[0] + thrustVec[0],
                     frictionVec[1] + thrustVec[1]];
     var acceleration = [forceVec[0]/1.3, forceVec[1]/1.3];

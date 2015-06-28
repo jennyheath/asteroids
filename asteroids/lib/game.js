@@ -29,22 +29,12 @@
   Game.prototype.addAsteroids = function (numAsteroids) {
     var asteroids = [];
 
-    _pickPos = function () {
-      var dirs = [-1, 1];
-      var dirX = dirs[Math.floor(Math.random()*2)];
-      var dirY = dirs[Math.floor(Math.random()*2)];
-      var randPos = [Math.random() * this.DIM_X * dirX,
-                     Math.random() * this.DIM_Y * dirY];
-      return randPos;
-    }.bind(this);
-
     for ( var i = 0; i < numAsteroids; i++ ) {
-      var randPos = _pickPos();
-      while ((randPos[0] < this.ship.pos[0] + 400 && randPos[0] > this.ship.pos[0] - 400) ||
-              (randPos[1] < this.ship.pos[1] + 400 && randPos[1] > this.ship.pos[1] - 400)) {
-        randPos = _pickPos();
-      }
-      var asteroid = new Asteroids.Asteroid(randPos, this);
+      var rangesX = [Math.random()*300+900, Math.random()*300];
+      var rangesY = [Math.random()*200+400, Math.random()*200];
+      var randPos = [rangesX[Math.floor(Math.random()*2)],
+                     rangesY[Math.floor(Math.random()*2)]];
+      var asteroid = new Asteroids.Asteroid(randPos, this, false);
       asteroids.push(asteroid);
     }
     return asteroids;

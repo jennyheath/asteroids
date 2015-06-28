@@ -13,7 +13,17 @@
 
   Bullet.prototype.collideWith = function (obj) {
     if (obj instanceof Asteroids.Asteroid) {
-      this.game.remove(obj);
+      if (obj.exploded) {
+        this.game.remove(obj);
+        this.game.remove(this);
+      } else {
+        for (i = 0; i <= 2; i++) {
+          var smallAsteroid = new Asteroids.Asteroid(obj.pos, this.game, true);
+          this.game.asteroids.push(smallAsteroid);
+        }
+        this.game.remove(obj);
+        this.game.remove(this);
+      }
     }
   };
 

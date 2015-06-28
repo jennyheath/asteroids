@@ -21,15 +21,9 @@
     if (key === 32) {
       this.game.ship.fireBullet();
     } else if (key === 37) {
-      this.game.ship.keydown = true;
       this.game.ship.turn("left");
-      // var l = new Date();
-      // this.leftPress = l.getTime();
     } else if (key === 39) {
-      this.game.ship.keydown = true;
       this.game.ship.turn("right");
-      // var r = new Date();
-      // this.rightPress = r.getTime();
     } else if (key === 38) {
       this.game.ship.power();
     }
@@ -40,16 +34,8 @@
     var key = event.keyCode;
     if (key === 37) {
       this.game.ship.stopTurn("left");
-      // var l = new Date();
-      // var leftTime = l.getTime();
-      // timeElapsed = leftTime - this.leftPress;
-      // this.game.ship.changeDir(timeElapsed/100);
     } else if (key === 39) {
       this.game.ship.stopTurn("right");
-      // var r = new Date();
-      // var rightTime = r.getTime();
-      // timeElapsed = rightTime - this.rightPress;
-      // this.game.ship.changeDir(-1*(timeElapsed/100));
     }
   };
 

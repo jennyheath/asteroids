@@ -3,12 +3,18 @@
     window.Asteroids = {};
   }
 
-  var Asteroid = Asteroids.Asteroid = function (pos, game) {
+  var Asteroid = Asteroids.Asteroid = function (pos, game, exploded) {
     Asteroids.MovingObject.call(this, {pos: pos});
-    this.color = '#6f6d6d';
-    this.radius = 50;
-    this.vel = randomVec(0.5);
+    // this.color = '#6f6d6d';
     this.game = game;
+    this.exploded = exploded;
+    if (this.exploded) {
+      this.vel = randomVec(1);
+      this.radius = 20;
+    } else {
+      this.vel = randomVec(0.5);
+      this.radius = 50;
+    }
   };
   Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);
 
@@ -21,9 +27,22 @@
   };
 
   Asteroid.prototype.draw = function (ctx) {
+    if (this.exploded) {
+      this.drawSmall(ctx);
+      return;
+    }
     ctx.beginPath();
     var img = new Image();
     img.src = "gazorpazorp.png";
+    var x = this.pos[0] - this.radius;
+    var y = this.pos[1] - this.radius;
+    ctx.drawImage(img, x, y, this.radius*2, this.radius*2);
+  };
+
+  Asteroid.prototype.drawSmall = function (ctx) {
+    ctx.beginPath();
+    var img = new Image();
+    img.src = "robot.png";
     var x = this.pos[0] - this.radius;
     var y = this.pos[1] - this.radius;
     ctx.drawImage(img, x, y, this.radius*2, this.radius*2);
