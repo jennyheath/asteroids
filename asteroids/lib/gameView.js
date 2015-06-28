@@ -6,12 +6,12 @@
   var GameView = Asteroids.GameView = function (game, ctx) {
     this.game = game;
     this.ctx = ctx;
-    // window.addEventListener("keypress", this.spaceBar);
+    window.addEventListener("keyup", this.spaceBar);
   };
 
-  // GameView.prototype.spaceBar = function (event) {
-  //   event.preventDefault();
-  // };
+  GameView.prototype.spaceBar = function (event) {
+    event.preventDefault();
+  };
 
   GameView.prototype.bindKeyHandlers = function () {
     var gameView = this;
@@ -24,7 +24,7 @@
     key('up', function () {
       gameView.game.ship.power();
     });
-    key('x', function () {
+    key('space', function () {
       gameView.game.ship.fireBullet();
     });
   };

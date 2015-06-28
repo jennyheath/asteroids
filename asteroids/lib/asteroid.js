@@ -6,8 +6,8 @@
   var Asteroid = Asteroids.Asteroid = function (pos, game) {
     Asteroids.MovingObject.call(this, {pos: pos});
     this.color = '#6f6d6d';
-    this.radius = 30;
-    this.vel = randomVec(3);
+    this.radius = 50;
+    this.vel = randomVec(2);
     this.game = game;
   };
   Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);
@@ -18,6 +18,18 @@
     var x = Math.random()*length*dir;
     var y = Math.sqrt(length*length  - x*x);
     return [x, y];
+  };
+
+  Asteroid.prototype.draw = function (ctx) {
+    ctx.beginPath();
+    // ctx.arc(this.pos[0], this.pos[1], this.radius, 0,2*Math.PI, false);
+    // ctx.fillStyle = this.color;
+    // ctx.fill();
+    var img = new Image();
+    img.src = "gazorpazorp.png";
+    var x = this.pos[0] - this.radius;
+    var y = this.pos[1] - this.radius;
+    ctx.drawImage(img, x, y, this.radius*2, this.radius*2);
   };
 
   Asteroid.prototype.collideWith = function (otherObject) {
