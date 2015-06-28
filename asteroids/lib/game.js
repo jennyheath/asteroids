@@ -55,28 +55,9 @@
     var img = new Image();
     img.src = "background.png";
     ctx.drawImage(img, 0, 0, this.DIM_X, this.DIM_Y);
-    // ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-    // ctx.fillStyle = "black";
-    // ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
     this.allObjects().forEach(function (movingObject) {
-      // if (movingObject instanceof Asteroids.Ship) {
-      //   movingObject.draw(ctx, this.shipAngle);
-      // } else {
       movingObject.draw(ctx);
-      // }
     });
-    if (this.ship.vel[0] >= 10) {
-      this.ship.decelerateX = true;
-    }
-    if (this.ship.vel[1] >= 10) {
-      this.ship.decelerateY = true;
-    }
-    if (this.ship.decelerateX) {
-      this.ship.vel[0] /= 1.015;
-    }
-    if (this.ship.decelerateY) {
-      this.ship.vel[1] /= 1.015;
-    }
   };
 
   Game.prototype.lose = function () {
@@ -120,10 +101,6 @@
   Game.prototype.step = function () {
     this.moveObjects();
     this.checkCollisions();
-    if (this.asteroids.length === 0) {
-      alert("You won! :)");
-      location.reload();
-    }
   };
 
   Game.prototype.remove = function (obj) {

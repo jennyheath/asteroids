@@ -7,7 +7,7 @@
     Asteroids.MovingObject.call(this, {pos: pos});
     this.color = '#6f6d6d';
     this.radius = 50;
-    this.vel = randomVec(2);
+    this.vel = randomVec(0.5);
     this.game = game;
   };
   Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);
@@ -22,9 +22,6 @@
 
   Asteroid.prototype.draw = function (ctx) {
     ctx.beginPath();
-    // ctx.arc(this.pos[0], this.pos[1], this.radius, 0,2*Math.PI, false);
-    // ctx.fillStyle = this.color;
-    // ctx.fill();
     var img = new Image();
     img.src = "gazorpazorp.png";
     var x = this.pos[0] - this.radius;
