@@ -39,34 +39,21 @@
     }
   };
 
-  // GameView.prototype.bindKeyHandlers = function () {
-  //   var gameView = this;
-    // key('left', function () {
-    //   gameView.game.ship.changeDir(1);
-    // });
-    // key('right', function () {
-    //   gameView.game.ship.changeDir(-1);
-    // });
-    // key('up', function () {
-    //   gameView.game.ship.power();
-    // });
-    // key('space', function () {
-    //   gameView.game.ship.fireBullet();
-    // });
-  // };
-
   GameView.prototype.start = function () {
+    document.getElementById('welcome-page').innerHTML = "";
     var gameObj = this;
     // gameObj.bindKeyHandlers();
 
-    setInterval(function () {
+    var gameDraw = setInterval(function () {
       if (gameObj.game.Lost) {
-        // alert("You lost :(");
-        location.reload();
+        clearInterval(gameDraw);
+        document.getElementById('welcome-page').innerHTML = "you lost. refresh to play again";
+        // location.reload();
       }
       if (gameObj.game.asteroids.length === 0) {
-        // alert("You won! :)");
-        location.reload();
+        clearInterval(gameDraw);
+        document.getElementById('welcome-page').innerHTML = "you lost. refresh to play again";
+        // location.reload();
       }
       gameObj.game.step();
       gameObj.game.draw(gameObj.ctx);

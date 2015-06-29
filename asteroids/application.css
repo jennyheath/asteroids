@@ -1,0 +1,17 @@
+#welcome-page {
+  display: block;
+  float: none;
+  text-align: center;
+}
+
+#start-button {
+  background-color: black;
+  color: white;
+  font-family: Arial;
+  font-size: 36px;
+  width: 150px;
+}
+
+.rick {
+  width: 100px;
+}

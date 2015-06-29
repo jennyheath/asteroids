@@ -16,7 +16,7 @@
     this.stopped = false;
     var ship = this;
     if (dir === "right") {
-      console.log("turning right");
+      // console.log("turning right");
       this.rightTurn = setTimeout(function () {
         ship.changeDir(-1);
       }, 1);
@@ -24,7 +24,7 @@
       //   clearInterval(this.rightTurn);
       // }.bind(this), 60);
     } else if (dir === "left") {
-      console.log("turning left");
+      // console.log("turning left");
       this.leftTurn = setTimeout(function () {
         ship.changeDir(1);
       }, 1);
@@ -37,10 +37,10 @@
   Ship.prototype.stopTurn = function (dir) {
     this.stopped = true;
     if (dir === "right") {
-      console.log("stop right");
+      // console.log("stop right");
       clearInterval(this.rightTurn);
     } else if (dir === "left") {
-      console.log("stop left");
+      // console.log("stop left");
       clearInterval(this.leftTurn);
     }
   };
@@ -51,14 +51,14 @@
     // }
     var increment = (Math.PI/180)*15;
     if (dir > 0) {
-      console.log("increment left");
+      // console.log("increment left");
       if (this.dir + increment > Math.PI*2) {
         this.dir = (this.dir + increment) % Math.PI*2;
       } else {
         this.dir += increment;
       }
     } else if (dir < 0) {
-      console.log("increment right");
+      // console.log("increment right");
       if (this.dir - increment < 0) {
         this.dir = (this.dir - increment) + Math.PI*2;
       } else {
@@ -90,7 +90,7 @@
     ctx.stroke();
 
     var img = new Image();
-    img.src = "rick.png";
+    img.src = "spaceship2.png";
     ctx.drawImage(img, x - 45, y - 25, 90, 50);
 
     // this.checkMaxSpeed();
