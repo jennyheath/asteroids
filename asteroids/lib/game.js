@@ -34,10 +34,30 @@
       var rangesY = [Math.random()*200+400, Math.random()*200];
       var randPos = [rangesX[Math.floor(Math.random()*2)],
                      rangesY[Math.floor(Math.random()*2)]];
+      while (this.overlappedAsteroids(asteroids, randPos)) {
+        console.log("collision detected");
+        randPos = [rangesX[Math.floor(Math.random()*2)],
+                   rangesY[Math.floor(Math.random()*2)]];
+      }
       var asteroid = new Asteroids.Asteroid(randPos, this, false);
       asteroids.push(asteroid);
     }
     return asteroids;
+  };
+
+  Game.prototype.overlappedAsteroids = function (asteroids, pos) {
+    var collisions = 0;
+    asteroids.forEach(function (asteroid) {
+      var potentialAsteroid = new Asteroids.Asteroid(pos, this, false);
+      if (potentialAsteroid.isCollidedWith(asteroid)) {
+        collisions += 1;
+      }
+    });
+    if (collisions > 0) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   Game.prototype.draw = function (ctx) {

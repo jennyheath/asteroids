@@ -5,7 +5,7 @@
 
   var Ship = Asteroids.Ship = function (game, pos) {
     Asteroids.MovingObject.call(this, {game: game, pos: pos});
-    this.radius = 45;
+    this.radius = 30;
     this.color = "#AC9787"; //"#f60909";
     this.vel = [0,0];
     this.dir = Math.PI/2;
@@ -75,8 +75,8 @@
     var x = this.pos[0];
     var y = this.pos[1];
 
-    var pointerX = x + Math.sin(this.dir)*50;
-    var pointerY = y + Math.cos(this.dir)*50;
+    var pointerX = x + Math.sin(this.dir)*this.radius;
+    var pointerY = y + Math.cos(this.dir)*this.radius;
     ctx.lineWidth = 1;
     ctx.arc(pointerX, pointerY, 0.5, 0, 2*Math.PI, false);
     ctx.stroke();
@@ -91,7 +91,7 @@
 
     var img = new Image();
     img.src = "spaceship2.png";
-    ctx.drawImage(img, x - 45, y - 25, 90, 50);
+    ctx.drawImage(img, x - 30, y - 15, 60, 30);
 
     // this.checkMaxSpeed();
   };
