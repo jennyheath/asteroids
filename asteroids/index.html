@@ -17,7 +17,11 @@
     <script src="lib/keymaster/keymaster.js"></script>
     <script>
     function beginGame() {
-      var c = document.getElementById("game-canvas")
+      var l = document.getElementById("lose-message");
+      l.style.display = "none";
+      var w = document.getElementById("win-message");
+      w.style.display = "none";
+      var c = document.getElementById("game-canvas");
       var ctx = c.getContext("2d");
       var game = new Asteroids.Game(7);
       c.width = game.DIM_X;
@@ -30,7 +34,15 @@
     <div id="welcome-page">
       <img class="rick" src="rickface.png">
       <br>
-      <button id="start-button" onclick="beginGame()">START</button>
+      <button id="start-button" onclick="beginGame()">E N T E R</button>
+    </div>
+    <div id="lose-message">
+      <p>game over</p>
+      <button id="start-button" onclick="beginGame()">play again</button>
+    </div>
+    <div id="win-message">
+      <p>you won!</p>
+      <button id="start-button" onclick="beginGame()">play again</button>
     </div>
   </body>
 

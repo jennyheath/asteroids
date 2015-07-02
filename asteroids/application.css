@@ -1,5 +1,5 @@
 body {
-  background-color: #000;
+  background-color: #000; //#0FB5C8;
 }
 
 canvas {
@@ -18,20 +18,55 @@ canvas {
 }
 
 #start-button {
-  background-color: black;
+  background-color: transparent;
   color: white;
-  font-family: "Arial Rounded MT Bold";
+  font-family: Courier;
+  /*font-weight: bold;*/
   font-size: 36px;
-  width: 150px;
+  width: 550px;
+  height: 180px;
   border-style: none;
+  border-radius: 10px;
 }
 
 #start-button:hover {
-  border-radius: 10px;
-  background-color: #0FB5C8;
+  background: url('portal.png');
+  color: black;
 }
 
 .rick {
   width: 100px;
   margin-bottom: 20px;
+}
+
+#lose-message {
+  display: none;
+  position: absolute;
+  font-family: Courier;
+  text-align: center;
+  font-size: 36px;
+  color: #fff;
+  background-color: rgba(0,0,0,0.5);
+  width: 100vw;
+  height: 100vh;
+  padding-top: 150px;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+#win-message {
+  display: none;
+  position: absolute;
+  font-family: Courier;
+  text-align: center;
+  font-size: 36px;
+  color: #fff;
+  background-color: rgba(0,0,0,0.5);
+  width: 100vw;
+  height: 100vh;
+  padding-top: 150px;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
 }

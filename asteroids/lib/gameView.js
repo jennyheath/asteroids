@@ -42,18 +42,17 @@
   GameView.prototype.start = function () {
     document.getElementById('welcome-page').innerHTML = "";
     var gameObj = this;
-    // gameObj.bindKeyHandlers();
 
     var gameDraw = setInterval(function () {
       if (gameObj.game.Lost) {
         clearInterval(gameDraw);
-        document.getElementById('welcome-page').innerHTML = "you lost. refresh to play again";
-        // location.reload();
+        var lose = document.getElementById('lose-message');
+        lose.style.display = "block";
       }
       if (gameObj.game.asteroids.length === 0) {
         clearInterval(gameDraw);
-        document.getElementById('welcome-page').innerHTML = "you lost. refresh to play again";
-        // location.reload();
+        var win = document.getElementById('win-message');
+        win.style.display = "block";
       }
       gameObj.game.step();
       gameObj.game.draw(gameObj.ctx);
