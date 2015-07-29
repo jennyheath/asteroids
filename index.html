@@ -3,7 +3,7 @@
   <head>
     <title>Gazorpazorp</title>
     <link rel="stylesheet" type="text/css" href="application.css">
-    <link rel="shortcut icon" type="image/png" href="morty.png"/>
+    <link rel="shortcut icon" type="image/png" href="assets/morty.png"/>
   </head>
 
   </body>
@@ -17,33 +17,55 @@
     <script src="lib/bullet.js"></script>
     <script src="lib/keymaster/keymaster.js"></script>
     <script>
-    function beginGame() {
-      var l = document.getElementById("lose-message");
-      l.style.display = "none";
-      var w = document.getElementById("win-message");
-      w.style.display = "none";
-      var c = document.getElementById("game-canvas");
-      var ctx = c.getContext("2d");
-      var game = new Asteroids.Game(7);
-      c.width = game.DIM_X;
-      c.height = game.DIM_Y;
-      var gameView = new Asteroids.GameView(game, ctx);
-      gameView.start();
-    }
+      var theme = new Audio("assets/rick_and_morty.mp3");
+      theme.play();
+      var themeInterval;
+      setTimeout(function () {
+        themeInterval = setInterval(function () {
+          theme.play();
+        }, 32000);
+      }, 3200);
+
+      function beginGame() {
+        theme.pause();
+        clearInterval(themeInterval);
+        var l = document.getElementById("lose-message");
+        l.style.display = "none";
+        var w = document.getElementById("win-message");
+        w.style.display = "none";
+        var c = document.getElementById("game-canvas");
+        var ctx = c.getContext("2d");
+        var game = new Asteroids.Game(15);
+        c.width = game.DIM_X;
+        c.height = game.DIM_Y;
+        var gameView = new Asteroids.GameView(game, ctx);
+        gameView.start();
+      }
     </script>
     <br>
     <div id="welcome-page">
-      <img class="rick" src="rickface.png">
+      <img class="rick" src="assets/rickface.png">
       <br>
-      <button id="start-button" onclick="beginGame()">E N T E R</button>
+      <button id="start-button" class="home" onclick="beginGame()">E N T E R</button>
+
+      <br>
+      <p class="instructions">How to play:<br>
+        <br>Press the up key to power the ship &#8593
+        <br>Press the right and left arrow keys to change directions &#8592 &#8594
+        <br>Press the space bar to fire bullets _
+      </p>
     </div>
     <div id="lose-message">
-      <p>game over</p>
-      <button id="start-button" onclick="beginGame()">play again</button>
+      <p class="message">game over
+        <br>
+        <button id="start-button" onclick="beginGame()">play again?</button>
+      </p>
     </div>
     <div id="win-message">
-      <p>you won!</p>
-      <button id="start-button" onclick="beginGame()">play again</button>
+      <p class="message">you won!
+        <br>
+        <button id="start-button" onclick="beginGame()">play again?</button>
+      </p>
     </div>
   </body>
 
